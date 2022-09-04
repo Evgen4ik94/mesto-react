@@ -1,8 +1,7 @@
 .profile__info {
     flex: 1 1 auto;
-    max-width: calc(880px - 120px - 150px);
+    max-width: calc(100% - 120px - 150px);
     padding-right: 25px;
-    min-width: 0;
 }
 @media screen and (max-width: 600px) {
     .profile__info {

@@ -1,0 +1,56 @@
+@import url("./vendor/normalize.css"); /*Внешние стили*/
+@import url('./fonts/fonts.css'); /*Шрифты*/
+/*СТИЛИ СТРАНИЦЫ*/
+@import url("./blocks/page/page.css"); /*Стили страницы*/
+@import url("./blocks/text/text.css");/*Стили общей информации профиля*/
+/*ШАПКА*/
+@import url("./blocks/header/header.css"); /*Стили шапки*/
+@import url("./blocks/header/__logo/header__logo.css"); /*Стили лого шапки*/
+/*ПРОФИЛЬ*/
+@import url("./blocks/profile/profile.css");/*Стили профиля*/
+@import url("./blocks/profile/__avatar/profile__avatar.css");/*Стили аватара профиля*/
+@import url("./blocks/profile/__image/profile__image.css");/*Стили аватара профиля*/
+@import url("./blocks/profile/__info/profile__info.css");/*Стили общей информации профиля*/
+@import url("./blocks/profile/__name-box/profile__name-box.css");/*Стили общей информации профиля*/
+@import url("./blocks/profile/__name/profile__name.css");/*Стили общей информации профиля*/
+@import url("./blocks/profile/__prof/profile__prof.css");/*Стили общей информации профиля*/
+@import url("./blocks/profile/__button/profile__button.css");/*Стили кнопок профиля*/
+@import url("./blocks/profile/__button-edit/profile__button-edit.css");/*Стили кнопки "редактировать"*/
+@import url("./blocks/profile/__button-add/profile__button-add.css");/*Стили кнопки "добавить"*/
+/*ГАЛЕРЕЯ*/
+@import url("./blocks/gallery/gallery.css");/*Стили галереи*/
+@import url("./blocks/gallery/__list/gallery__list.css");/*Стили галереи*/
+@import url("./blocks/photo/photo.css");/*Стили галереи*/
+@import url("./blocks/photo/__item/photo__item.css");/*Стили фото галереи*/
+@import url("./blocks/photo/__description/photo__description.css");/*Стили блока подписи фото*/
+@import url("./blocks/photo/__title/photo__title.css");/*Стили подписи фото*/
+@import url("./blocks/photo/__likebox/photo__likebox.css");
+@import url("./blocks/photo/__count/photo__count.css");
+@import url("./blocks/photo/__button-like/photo__button-like.css");/*Стили кнопки лайка*/
+@import url("./blocks/photo/__button-like/_active/photo__button-like_active.css");
+@import url("./blocks/photo/__button-delete/photo__button-delete.css");/*Стили кнопки удалить*/
+
+/*ПОДВАЛ*/
+@import url("./blocks/footer/footer.css");/*Стили подвала*/
+@import url("./blocks/footer/__author/footer__author.css");/*Стили подвала*/
+
+/*POP-UP*/
+@import url("./blocks/popup/popup.css");/*Стили поп-апа*/
+@import url("./blocks/popup/__container/popup__container.css");/*Стили поп-апа*/
+@import url("./blocks/popup/__button-close/popup__button-close.css");/*Стили кнопки "закрыть"*/
+@import url("./blocks/popup/__form/popup__form.css");/*Стили формы поп-апа*/
+@import url("./blocks/popup/__head/popup__head.css");/*Стили заголовка формы*/
+@import url("./blocks/popup/__input/popup__input.css");/*Стили заполнения формы*/
+@import url("./blocks/popup/__button-submit/popup__button-submit.css");/*Стили кнопки "сохранить"*/
+@import url("./blocks/popup/_opened/popup_opened.css");/*Стили открытия поп-апа*/
+@import url("./blocks/popup/__image-container/popup__image-container.css"); /*Расположение попапа картинки*/
+@import url("./blocks/popup/__image/popup__image.css"); /*Стили попапа картинки*/
+@import url("./blocks/popup/__image-caption/popup__image-caption.css"); /*Стили подписи картинки в попапе*/
+@import url("./blocks/popup/__button-submit/__button-submit_disabled/popup__button-submit_disabled.css"); /*Стиль неактивной кнопки*/
+@import url("./blocks/profile/__avatar-button/profile__avatar-button.css");
+
+/*ERRORS*/
+@import url("./blocks/popup/__input-error/popup__input-error.css"); /*Стили текста ошибки в попапе*/
+@import url("./blocks/popup/__input-error/_active/popup__input-error_active.css"); /*Стили подписи картинки в попапе*/
+
+

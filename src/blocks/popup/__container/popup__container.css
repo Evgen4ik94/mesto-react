@@ -1,4 +1,4 @@
-.popup__container {
+.popup__container_type_form {
     position: relative;
     padding: 0;
     width: 100%;
@@ -16,4 +16,35 @@
     }    
 }
 
+.popup__container_type_delete {
+    width: 100%;
+    max-width: 430px;
+    min-height: 181px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+    padding: 0px;
+}
+  
+@media screen and (max-width: 600px) {
+    .popup__container_type_delete {
+      width: calc(100% - 60px);
+    }
+}  
+
+.popup__container_type_avatar {
+    width: 100%;
+    max-width: 430px;
+    height: 272px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+    padding: 0;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .popup__container_type_avatar {
+      width: calc(100% - 60px);
+    }
+  }
   

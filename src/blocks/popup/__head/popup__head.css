@@ -3,7 +3,7 @@
     flex: 1;
     margin: 0;
     overflow: hidden;
-    padding: 34px 64px 54px 36px;
+    padding: 34px 0 54px 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-weight: 900;
@@ -14,7 +14,7 @@
     .popup__head {
         font-size: 20px;
         line-height: 25px;
-        padding: 25px 22px 75px;
+        padding: 25px 22px 75px 0;
     }
 }
 .popup__head_type_delete {

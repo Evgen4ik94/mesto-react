@@ -1,11 +1,11 @@
 .profile {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     max-width: 880px;
-    margin: 0 auto;
-    padding: 40px 0 0;
+    min-height: 120px;
+    margin: 40px auto 0;
 }
 @media screen and (max-width: 900px) {
     .profile {

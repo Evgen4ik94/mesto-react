@@ -3,5 +3,5 @@
     flex-flow: row nowrap;
     align-items: flex-end;
     text-align: left;
-    max-width: 336px;
+    max-width: 100%;
 }

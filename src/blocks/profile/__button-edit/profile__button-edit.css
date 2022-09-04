@@ -6,7 +6,7 @@
     border: 1px solid #fff;
     height: 24px;
     width: 24px;
-    margin-bottom: 3px;
+    margin: auto 0 8px;
     flex: none;
 } 
 
@@ -19,5 +19,6 @@
         width: 18px;
         height: 18px;
         align-self: center;
+        margin-bottom: 5px;
     } 
 } 

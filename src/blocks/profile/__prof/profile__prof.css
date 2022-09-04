@@ -3,7 +3,8 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    max-width: 336px;
+    max-width: 495px;
+    margin: 0;
 }
 @media screen and (max-width: 600px) {
     .profile__prof {

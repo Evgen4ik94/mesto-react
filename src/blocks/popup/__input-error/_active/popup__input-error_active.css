@@ -1,0 +1,9 @@
+.popup__input-error_active {
+    visibility: visible;
+    margin: -31px 0 15px;
+    max-height: 15px;
+    border-top: 1px solid red;
+}
+.popup__input-error_active:last-of-type {
+    margin: -46px 0 30px;
+}

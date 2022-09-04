@@ -1,6 +1,6 @@
 .gallery {
     max-width: 880px;
-    margin: 0 auto;
+    margin: auto;
     padding: 51px 0 0;
     min-height: 80vh;
 }
