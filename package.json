@@ -41,5 +41,16 @@
   "devDependencies": {
     "eslint": "^8.23.1",
     "gh-pages": "^4.0.0"
+  },
+  "description": "\"Mesto\" - это интерактивная страница для размещения фотографий пользователями. Проект разработан в рамках прохождения 4-10 спринтов курса. Данная проектная работа в 10-м спринте переведена на фреймворк React. Ссылка на репозиторий (https://github.com/Evgen4ik94/mesto-react)",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Evgen4ik94/mesto-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Evgen4ik94/mesto-react/issues"
   }
 }
