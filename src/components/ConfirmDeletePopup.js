@@ -8,7 +8,7 @@ function ConfirmDeletePopup(props) {
         e.preventDefault();
         setButtonText("Удаление...");
         props
-            .onDelete()
+            .onCardDelete()
             .then(() => handleClosePopup())
             .finally(() => {
                 setButtonText("Да");

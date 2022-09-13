@@ -52,10 +52,6 @@ function App() {
     setImagePopupOpen(!isImagePopupOpen);
   }
 
-  function handleTrashClick() {
-    setConfirmDeletePopupOpen(!isConfirmDeletePopupOpen);
-  }
-
   // Закрываем попапы (изменяем открытое состояние с true на false) и очищаем поля
   function closeAllPopups() {
     setIsEditProfilePopupOpenClose(false);
@@ -65,9 +61,14 @@ function App() {
     setConfirmDeletePopupOpen(false);
     setSelectedCard({ name: "", link: "" });
   }
-  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddCardPopupOpen || selectedCard.link
+
+  //Делаем закрытие попапов на Escape
+  //Создаем переменную isOpen снаружи useEffect, в которой следим за всеми состояниями попапов. 
+  //Если хоть одно состояние true или не null, то какой-то попап открыт, значит, навешивать нужно обработчик.
+  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddCardPopupOpen || selectedCard.link || isConfirmDeletePopupOpen
 
   React.useEffect(() => {
+    //Объявляем функцию внутри useEffect, чтобы она не теряла свою ссылку при обновлении компонента.
     function closeByEscape(evt) {
       if(evt.key === 'Escape') {
         closeAllPopups();
@@ -75,11 +76,13 @@ function App() {
     }
     if(isOpen) { // навешиваем только при открытии
       document.addEventListener('keydown', closeByEscape);
-      return () => {
+      return () => { //И не забываем удалять обработчик в clean up функции через return
         document.removeEventListener('keydown', closeByEscape);
       }
     }
-  }, [isOpen]) 
+  }, [isOpen]) //А также массив зависимостей c isOpen, чтобы отслеживать изменение этого показателя открытости. 
+  //Как только он становится true, то навешивается обработчик, когда в false, тогда удаляется обработчик.
+
   //Добавим функцию лайка
   function handleLikeClick (card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
@@ -99,7 +102,7 @@ function App() {
     setConfirmDeletePopupOpen(!isConfirmDeletePopupOpen)
   }
 
-  function handleDeleteClick(card) {
+  function handleDeleteSubmit(card) {
     return api
               .deleteCard(card._id)
               .then((newCard) => {
@@ -110,7 +113,6 @@ function App() {
               })
               .catch((err) => console.log(err));
   }
-
 
   function handleUpdateUser(data) { //Добавляем обработчик (п. 3)
     return api
@@ -147,7 +149,7 @@ function App() {
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
           onCardLike={handleLikeClick}
-          onCardDelete={handleTrashClick}
+          onCardDelete={handleDeleteClick}
           cards={cards}
         />
         <Footer />
@@ -170,7 +172,7 @@ function App() {
         <ConfirmDeletePopup
           isOpen={isConfirmDeletePopupOpen}
           onClose={closeAllPopups}
-          onDelete={handleDeleteClick}
+          onCardDelete={handleDeleteSubmit}
         />
       </CurrentUserContext.Provider>
   );
