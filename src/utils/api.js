@@ -4,6 +4,11 @@ class Api {
     this._headers = config.headers;
   }
 
+  _request(url, options) {
+    return fetch(url, options)
+      .then(this._responseResult);
+  }
+
   _responseResult(res) {
     if (res.ok) {
       return res.json();
@@ -12,47 +17,37 @@ class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this._url}/cards`, {
+    return this._request(`${this._url}/cards`, {
       method: "GET",
-      headers: this._headers,
-    }).then((res) => {
-      return this._responseResult(res);
+      headers: this._headers
     });
   }
   getUserData() {
-    return fetch(`${this._url}/users/me`, {
+    return this._request(`${this._url}/users/me`, {
       method: "GET",
-      headers: this._headers,
-    }).then((res) => {
-      return this._responseResult(res);
+      headers: this._headers
     });
   }
   addNewCard(data) {
-    return fetch(`${this._url}/cards`, {
+    return this._request(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify(data),
-    }).then((res) => {
-      return this._responseResult(res);
+      body: JSON.stringify(data)
     });
   }
 
   deleteCard(id) {
-    return fetch(`${this._url}/cards/${id}`, {
+    return this._request(`${this._url}/cards/${id}`, {
       method: "DELETE",
-      headers: this._headers,
-    }).then((res) => {
-      return this._responseResult(res);
+      headers: this._headers
     });
   }
 
   updateUserData(data) {
-    return fetch(`${this._url}/users/me`, {
+    return this._request(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(data),
-    }).then((res) => {
-      return this._responseResult(res);
+      body: JSON.stringify(data)
     });
   }
   changeLikeCardStatus(card, isLiked) {
@@ -64,31 +59,24 @@ class Api {
   }
 
   addLike(data) {
-    return fetch(`${this._url}/cards/likes/${data}`, {
+    return this._request(`${this._url}/cards/likes/${data}`, {
         method: "PUT",
         headers: this._headers
-      })
-      .then((res) => {
-        return this._responseResult(res);
-      })
+      });
   }
 
   deleteLike(data) {
-    return fetch(`${this._url}/cards/likes/${data}`, {
+    return this._request(`${this._url}/cards/likes/${data}`, {
       method: "DELETE",
-      headers: this._headers,
-    }).then((res) => {
-      return this._responseResult(res);
+      headers: this._headers
     });
   }
 
   updateAvatar(data) {
-    return fetch(`${this._url}/users/me/avatar`, {
+    return this._request(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(data),
-    }).then((res) => {
-      return this._responseResult(res);
+      body: JSON.stringify(data)
     });
   }
 }

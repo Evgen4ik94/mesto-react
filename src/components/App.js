@@ -12,7 +12,7 @@ import ConfirmDeletePopup from "./ConfirmDeletePopup";
  
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpenClose] = React.useState(false); //Стейт попапа ред. профиля
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpenClose] = React.useState(false); //Стейт попапа ред. профиля
   const [isAddCardPopupOpen, setAddCardPopupOpenClose] = React.useState(false); //Стейт попапа добавления карточки
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpenClose] = React.useState(false); //Стейт попапа изменения аватара
   const [isConfirmDeletePopupOpen, setConfirmDeletePopupOpen] = React.useState(false); //Стейт попапа удаления карточки
@@ -36,7 +36,7 @@ function App() {
   }, []);
 
   function handleEditProfileClick() { //Открытие попапа ред. профиля по клику (меняем состояние на true)
-    setEditProfilePopupOpenClose(!isEditProfilePopupOpen);
+    setIsEditProfilePopupOpenClose(!isEditProfilePopupOpen);
   }
 
   function handleAddPlaceClick() { //Открытие попапа добавления карточки по клику (меняем состояние на true)
@@ -58,13 +58,28 @@ function App() {
 
   // Закрываем попапы (изменяем открытое состояние с true на false) и очищаем поля
   function closeAllPopups() {
-    setEditProfilePopupOpenClose(false);
+    setIsEditProfilePopupOpenClose(false);
     setAddCardPopupOpenClose(false);
     setEditAvatarPopupOpenClose(false);
     setImagePopupOpen(false);
     setConfirmDeletePopupOpen(false);
     setSelectedCard({ name: "", link: "" });
   }
+  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddCardPopupOpen || selectedCard.link
+
+  React.useEffect(() => {
+    function closeByEscape(evt) {
+      if(evt.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    if(isOpen) { // навешиваем только при открытии
+      document.addEventListener('keydown', closeByEscape);
+      return () => {
+        document.removeEventListener('keydown', closeByEscape);
+      }
+    }
+  }, [isOpen]) 
   //Добавим функцию лайка
   function handleLikeClick (card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
@@ -107,10 +122,10 @@ function App() {
   function handleUpdateAvatar(data) {
     return api
               .updateAvatar(data)
-              .catch((err) => console.log(err))
               .then((res) => {
                 setCurrentUser(res);
-              });
+              })
+              .catch((err) => console.log(err))
   }
 
   function handleAddPlaceSubmit(card) {
@@ -123,7 +138,6 @@ function App() {
   }
 
   return (
-    <>
       <CurrentUserContext.Provider value={currentUser}>
         <Header />
         <Main
@@ -159,7 +173,6 @@ function App() {
           onDelete={handleDeleteClick}
         />
       </CurrentUserContext.Provider>
-    </>
   );
 }
 

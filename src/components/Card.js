@@ -27,7 +27,6 @@ function Card(props) {
   }
 
   return (
-    <>
       <li className="photo">
         <button 
         className={cardDeleteButtonClassName} 
@@ -52,7 +51,6 @@ function Card(props) {
           </div>
         </div>
       </li>
-    </>
   );
 }
 
