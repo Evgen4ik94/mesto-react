@@ -19,7 +19,7 @@ function AddPlacePopup(props) {
         setTimeout(() => { //Очищаем инпуты
             setName("");
             setLink("");
-        }, 20);
+        }, 200);
     }
     function handleSubmit(e) {
         e.preventDefault();

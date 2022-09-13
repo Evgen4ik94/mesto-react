@@ -8,12 +8,14 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import ConfirmDeletePopup from "./ConfirmDeletePopup";
  
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpenClose] = React.useState(false); //Стейт попапа ред. профиля
   const [isAddCardPopupOpen, setAddCardPopupOpenClose] = React.useState(false); //Стейт попапа добавления карточки
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpenClose] = React.useState(false); //Стейт попапа изменения аватара
+  const [isConfirmDeletePopupOpen, setConfirmDeletePopupOpen] = React.useState(false); //Стейт попапа удаления карточки
   const [selectedCard, setSelectedCard] = React.useState({
     name: "",
     link: "",
@@ -49,12 +51,18 @@ function App() {
     setSelectedCard(card);
     setImagePopupOpen(!isImagePopupOpen);
   }
+
+  function handleTrashClick() {
+    setConfirmDeletePopupOpen(!isConfirmDeletePopupOpen);
+  }
+
   // Закрываем попапы (изменяем открытое состояние с true на false) и очищаем поля
   function closeAllPopups() {
     setEditProfilePopupOpenClose(false);
     setAddCardPopupOpenClose(false);
     setEditAvatarPopupOpenClose(false);
     setImagePopupOpen(false);
+    setConfirmDeletePopupOpen(false);
     setSelectedCard({ name: "", link: "" });
   }
   //Добавим функцию лайка
@@ -72,17 +80,22 @@ function App() {
       .catch((err) => console.log(err));
   } 
   
-  function handleDeleteClick(card) {
-    api
-      .deleteCard(card._id)
-      .then((newCard) => {
-        const newCards = cards.filter((c) => // с помощью метода filter: создаем копию массива, исключив из него удалённую карточку
-          c._id === card._id ? "" : newCard
-        );
-        setCards(newCards);
-      })
-      .catch((err) => console.log(err));
+  function handleDeleteClick() {
+    setConfirmDeletePopupOpen(!isConfirmDeletePopupOpen)
   }
+
+  function handleDeleteClick(card) {
+    return api
+              .deleteCard(card._id)
+              .then((newCard) => {
+                const newCards = cards.filter((c) =>
+                  c._id === card._id ? "" : newCard
+                );
+                setCards(newCards);
+              })
+              .catch((err) => console.log(err));
+  }
+
 
   function handleUpdateUser(data) { //Добавляем обработчик (п. 3)
     return api
@@ -120,7 +133,7 @@ function App() {
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
           onCardLike={handleLikeClick}
-          onCardDelete={handleDeleteClick}
+          onCardDelete={handleTrashClick}
           cards={cards}
         />
         <Footer />
@@ -140,6 +153,11 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         /> 
+        <ConfirmDeletePopup
+          isOpen={isConfirmDeletePopupOpen}
+          onClose={closeAllPopups}
+          onDelete={handleDeleteClick}
+        />
       </CurrentUserContext.Provider>
     </>
   );
